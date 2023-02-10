@@ -1,3 +1,4 @@
+import { RoleModule } from './role/role.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -9,7 +10,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot('mongodb://localhost:27017/graphlv1'),
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -17,6 +18,7 @@ import { UserModule } from './user/user.module';
       playground: true,
     }),
     UserModule,
+    RoleModule
   ],
   controllers: [AppController],
   providers: [AppService],

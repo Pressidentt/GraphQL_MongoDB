@@ -2,28 +2,45 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Role {
+  _id: String!
+  name: String!
+  description: String!
+}
+
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  _id: String!
+  name: String!
+  roles: [Role!]
 }
 
 type Query {
   user(id: Int!): User!
+  role: [Role!]!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createRole(createRoleInput: CreateRoleInput!): Role!
 }
 
 input CreateUserInput {
   """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateUserInput {
   """Example field (placeholder)"""
-  exampleField: Int
+  name: String
   id: Int!
+}
+
+input CreateRoleInput {
+  """Example field (placeholder)"""
+  name: String!
+
+  """Example field (placeholder)"""
+  description: String!
 }
