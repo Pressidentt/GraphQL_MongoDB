@@ -7,10 +7,14 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/graphlv1'),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
+    MongooseModule.forRoot(process.env.DB_URL),
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -23,4 +27,4 @@ import { UserModule } from './user/user.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
